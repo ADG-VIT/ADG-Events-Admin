@@ -21,8 +21,9 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var scanType:ScanType!
-    
+    var networkManager: NetworkManager! = NetworkManager()
 
+    //MARK: - Main functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,8 +110,25 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
         let regNum = code
         if scanType == .attendance {
             //attendance networking call to update attendance
+            networkManager.setAttendance(id: regNum) { (err, res) in
+                if let error = err {
+                    print(error)
+                }
+                if let res = res {
+                    print(res)
+                }
+            }
+            
         } else {
             //food networking call to update food
+            networkManager.setFood(id: regNum) { (err, res) in
+                if let error = err {
+                    print(error)
+                }
+                if let res = res {
+                    print(res)
+                }
+            }
         }
     }
     
