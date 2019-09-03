@@ -23,6 +23,7 @@ class AdminHomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navigationController?.navigationBar.prefersLargeTitles = true
         setUpTheming()
         tapRecogSetup()
         setupShadow()
@@ -69,7 +70,9 @@ class AdminHomeViewController: UIViewController {
         //switch to scanner view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "BarcodeAndQrViewController") as? BarcodeAndQrViewController else { fatalError("couldnt init vc") }
         vc.scanType = .attendance
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+        //hide tab bar
     }
     
     @objc func fdCoupTapped() {
@@ -77,6 +80,7 @@ class AdminHomeViewController: UIViewController {
         //switch to scanner view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "BarcodeAndQrViewController") as? BarcodeAndQrViewController else { fatalError("couldnt init vc") }
         vc.scanType = .food
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

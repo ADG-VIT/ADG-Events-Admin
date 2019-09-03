@@ -22,13 +22,13 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
     var previewLayer: AVCaptureVideoPreviewLayer!
     var scanType:ScanType!
     var networkManager: NetworkManager! = NetworkManager()
+    var qrCodeFrameView:UIView?
 
     //MARK: - Main functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -65,6 +65,7 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
         view.layer.addSublayer(previewLayer)
         print("here")
         captureSession.startRunning()
+        qrFrameSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +98,8 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
         
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            let barCodeObject = previewLayer?.transformedMetadataObject(for: readableObject)
+            qrCodeFrameView?.frame = barCodeObject!.bounds
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
@@ -152,6 +155,19 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
                     }
                 }
             }
+        }
+    }
+    
+    func qrFrameSetup() {
+        // Initialize QR Code Frame to highlight the QR code
+        qrCodeFrameView = UIView()
+        
+        if let qrCodeFrameView = qrCodeFrameView {
+            qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
+            qrCodeFrameView.layer.borderWidth = 4
+            qrCodeFrameView.frame = view.layer.bounds
+            view.addSubview(qrCodeFrameView)
+            view.bringSubviewToFront(qrCodeFrameView)
         }
     }
     
