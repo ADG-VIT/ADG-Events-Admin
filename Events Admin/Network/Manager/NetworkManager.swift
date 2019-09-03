@@ -57,7 +57,6 @@ struct NetworkManager{
                         return
                     }
                     
-                    print(responseData)
                     completion(nil,"Done")
 //                    do {
 //                        print(responseData)
@@ -71,6 +70,7 @@ struct NetworkManager{
 //                        completion(NetworkResponse.unableToDecode.rawValue, nil)
 //                    }
                 case .failure(let networkFailureError):
+                    print(networkFailureError)
                     completion(networkFailureError, nil)
                 }
             }

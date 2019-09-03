@@ -33,5 +33,6 @@ extension AppNavigationController: Themed {
         navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: theme.barForegroundColor
         ]
+        navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : theme.barForegroundColor]
     }
 }

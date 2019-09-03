@@ -53,7 +53,7 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
             captureSession.addOutput(metadataOutput)
             
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
+            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417,.upce,.code39,.code39Mod43,.code93,.code128,.aztec,.itf14,.interleaved2of5,.dataMatrix]
         } else {
             failed()
             return
@@ -63,7 +63,7 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-        
+        print("here")
         captureSession.startRunning()
     }
     
@@ -111,22 +111,45 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
         if scanType == .attendance {
             //attendance networking call to update attendance
             networkManager.setAttendance(id: regNum) { (err, res) in
-                if let error = err {
-                    print(error)
-                }
-                if let res = res {
-                    print(res)
+
+                if err == nil {
+                    DispatchQueue.main.sync {
+                        let alert = UIAlertController(title: "Status", message: res, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }else{
+                    DispatchQueue.main.sync {
+                        let alert = UIAlertController(title: "Status", message: err, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
             
         } else {
             //food networking call to update food
             networkManager.setFood(id: regNum) { (err, res) in
-                if let error = err {
-                    print(error)
-                }
-                if let res = res {
-                    print(res)
+                if err == nil {
+                    DispatchQueue.main.sync {
+                        let alert = UIAlertController(title: "Status", message: res, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }else{
+                    DispatchQueue.main.sync {
+                        let alert = UIAlertController(title: "Status", message: err, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
         }

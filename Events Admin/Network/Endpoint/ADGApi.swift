@@ -28,8 +28,8 @@ public enum ADGApi{
 extension ADGApi: EndPointType{
     var environmentBaseURL : String {
         switch NetworkManager.environment {
-        case .attendance: return "https://adg-events.herokuapp.com/"
-        case .food: return "https://adg-events.herokuapp.com/"
+        case .attendance: return "https://adg-events.herokuapp.com"
+        case .food: return "https://adg-events.herokuapp.com"
         }
     }
     

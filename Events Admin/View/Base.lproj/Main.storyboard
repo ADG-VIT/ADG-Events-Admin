@@ -30,7 +30,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-attendance-100(1)" translatesAutoresizingMaskIntoConstraints="NO" id="t0t-3J-hOr">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flight-attendant" translatesAutoresizingMaskIntoConstraints="NO" id="t0t-3J-hOr">
                                                 <rect key="frame" x="8" y="19" width="79.5" height="79.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="t0t-3J-hOr" secondAttribute="height" multiplier="1:1" id="PM9-by-bgR"/>
@@ -90,7 +90,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Admin" id="BaN-ag-PoG"/>
                     <connections>
+                        <outlet property="attendLabel" destination="PYa-1o-7ZA" id="oZk-7e-Owy"/>
                         <outlet property="attendaneView" destination="Tdm-Dc-85Y" id="aHs-wX-REL"/>
+                        <outlet property="fcLabel" destination="ttt-o3-UAN" id="WhM-5l-Am6"/>
                         <outlet property="foodCouponView" destination="Tfp-Ub-Pma" id="IrA-Ue-ry8"/>
                     </connections>
                 </viewController>
@@ -116,14 +118,44 @@
         <!--Settings-->
         <scene sceneID="OTz-rM-FjX">
             <objects>
-                <viewController id="HIN-Nc-wtk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="HIN-Nc-wtk" customClass="SettingsViewController" customModule="Events_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lY0-Jh-tAt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIv-Li-DlG">
+                                <rect key="frame" x="16" y="124" width="343" height="74"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tc-8E-Hyn">
+                                        <rect key="frame" x="8" y="27" width="327" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2tc-8E-Hyn" firstAttribute="top" secondItem="DIv-Li-DlG" secondAttribute="top" constant="27" id="9ff-LK-LAB"/>
+                                    <constraint firstItem="2tc-8E-Hyn" firstAttribute="leading" secondItem="DIv-Li-DlG" secondAttribute="leading" constant="8" id="oXl-gD-OLR"/>
+                                    <constraint firstAttribute="bottom" secondItem="2tc-8E-Hyn" secondAttribute="bottom" constant="26" id="tKg-bT-n7B"/>
+                                    <constraint firstAttribute="trailing" secondItem="2tc-8E-Hyn" secondAttribute="trailing" constant="8" id="v2h-oq-96J"/>
+                                    <constraint firstAttribute="width" secondItem="DIv-Li-DlG" secondAttribute="height" multiplier="343:74" id="yM8-gh-uEX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DIv-Li-DlG" firstAttribute="leading" secondItem="92R-EL-Ohn" secondAttribute="leading" constant="16" id="Mqv-cT-SCk"/>
+                            <constraint firstItem="92R-EL-Ohn" firstAttribute="trailing" secondItem="DIv-Li-DlG" secondAttribute="trailing" constant="16" id="QAK-Dc-RHV"/>
+                            <constraint firstItem="DIv-Li-DlG" firstAttribute="top" secondItem="92R-EL-Ohn" secondAttribute="top" constant="8" id="xZI-LY-yNf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="92R-EL-Ohn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="a0h-gZ-SHO"/>
+                    <connections>
+                        <outlet property="dkModeView" destination="DIv-Li-DlG" id="08n-K3-2Yc"/>
+                        <outlet property="label" destination="2tc-8E-Hyn" id="ZIh-aV-Bss"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5t-Rh-ezD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -188,7 +220,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-attendance-100(1)" width="50" height="50"/>
+        <image name="flight-attendant" width="256" height="256"/>
         <image name="icons8-content-50" width="25" height="25"/>
         <image name="icons8-settings-50" width="25" height="25"/>
         <image name="icons8-take-away-food-64" width="32" height="32"/>

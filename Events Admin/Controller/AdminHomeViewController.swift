@@ -14,6 +14,8 @@ class AdminHomeViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var attendaneView: UIView!
     @IBOutlet weak var foodCouponView: UIView!
+    @IBOutlet weak var attendLabel: UILabel!
+    @IBOutlet weak var fcLabel: UILabel!
     
 
     //MARK: - Main function
@@ -21,6 +23,7 @@ class AdminHomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUpTheming()
         tapRecogSetup()
         setupShadow()
     }
@@ -66,7 +69,7 @@ class AdminHomeViewController: UIViewController {
         //switch to scanner view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "BarcodeAndQrViewController") as? BarcodeAndQrViewController else { fatalError("couldnt init vc") }
         vc.scanType = .attendance
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func fdCoupTapped() {
@@ -74,7 +77,18 @@ class AdminHomeViewController: UIViewController {
         //switch to scanner view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "BarcodeAndQrViewController") as? BarcodeAndQrViewController else { fatalError("couldnt init vc") }
         vc.scanType = .food
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
+}
+
+extension AdminHomeViewController: Themed {
+    func applyTheme(_ theme: AppTheme) {
+        view.backgroundColor = theme.backgroundColor
+        foodCouponView.backgroundColor = theme.barBackgroundColor
+        fcLabel.textColor = theme.barForegroundColor
+        attendaneView.backgroundColor = theme.barBackgroundColor
+        attendLabel.textColor = theme.barForegroundColor
+        
+    }
 }
