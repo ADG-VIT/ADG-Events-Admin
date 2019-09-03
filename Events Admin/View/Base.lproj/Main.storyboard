@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="2016.8" y="842.42878560719646"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--App Navigation Controller-->
         <scene sceneID="hQo-Zr-09K">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5wx-Ey-h5n" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5wx-Ey-h5n" customClass="AppNavigationController" customModule="Events_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icons8-content-50" id="qcp-RT-Tr5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="5kG-Me-aIJ">
@@ -148,10 +148,10 @@
             </objects>
             <point key="canvasLocation" x="1239.2" y="120.98950524737631"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--App Navigation Controller-->
         <scene sceneID="pag-Im-VfF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sD4-6q-3j0" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sD4-6q-3j0" customClass="AppNavigationController" customModule="Events_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icons8-settings-50" id="IsO-Q8-ZGj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Rtv-iC-016">
@@ -167,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="1239.2" y="842.42878560719646"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--App Tab Bar Controller-->
         <scene sceneID="zbR-CY-FLy">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ono-Me-Ka9" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ono-Me-Ka9" customClass="AppTabBarController" customModule="Events_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EtQ-WA-cfU">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
