@@ -23,6 +23,8 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
     var scanType:ScanType!
     var networkManager: NetworkManager! = NetworkManager()
     var qrCodeFrameView:UIView?
+    
+//    guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
 
     //MARK: - Main functions
     override func viewDidLoad() {
@@ -177,5 +179,29 @@ class BarcodeAndQrViewController: UIViewController, AVCaptureMetadataOutputObjec
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touchPoint = touches.first! as UITouch
+        let screenSize = previewLayer.bounds.size
+        let focusPoint = CGPoint(x: touchPoint.location(in: view).y / screenSize.height, y: 1.0 - touchPoint.location(in: view).x / screenSize.width)
+        
+        if let device = AVCaptureDevice.default(for: .video) {
+            do {
+                try device.lockForConfiguration()
+                if device.isFocusPointOfInterestSupported {
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = AVCaptureDevice.FocusMode.autoFocus
+                }
+                if device.isExposurePointOfInterestSupported {
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.autoExpose
+                }
+                device.unlockForConfiguration()
+                
+            } catch {
+                // Handle errors here
+            }
+        }
     }
 }
